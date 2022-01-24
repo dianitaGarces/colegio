@@ -1,0 +1,41 @@
+<div>
+  <h2 id="page-heading" data-cy="ColegioHeading">
+    <span>Colegios</span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="colegios?.length === 0">
+    <span>No se encontraron colegios para listar</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="colegios && colegios.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Nombre</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let colegio of colegios; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="[colegio.id, 'view']">{{ colegio.id }}</a>
+          </td>
+          <td>{{ colegio.nombre }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="[colegio.id, 'view']" class="btn btn-outline-info" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Ver Colegio</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "changelogDate": "20220123121925",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Asignatura",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "profesor",
+      "relationshipName": "id_profesor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "estudiante",
+      "otherEntityRelationshipName": "id_asignatura",
+      "ownerSide": true,
+      "relationshipName": "id_estudiante",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "grado",
+      "otherEntityName": "curso",
+      "relationshipName": "id_curso",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

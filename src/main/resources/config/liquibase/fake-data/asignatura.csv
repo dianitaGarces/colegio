@@ -1,0 +1,6 @@
+id;nombre;id_curso_id;id_profesor_id
+1;Matemáticas;1;1
+2;Español;1;2
+3;Ingles Básico;1;3
+4;Ingles Avanzado;2;3
+5;Pre Icfes;3;1

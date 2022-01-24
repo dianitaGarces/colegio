@@ -1,0 +1,53 @@
+<div>
+  <h2 id="page-heading" data-cy="AsignaturaHeading">
+    <span>Asignaturas</span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="asignaturas?.length === 0">
+    <span>No se encuentran asignaturas disponibles</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="asignaturas && asignaturas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 10%"><span>ID</span></th>
+          <th scope="col" style="width: 50%"><span>Nombre</span></th>
+          <th scope="col" style="width: 10%"><span>Curso</span></th>
+          <th scope="col" style="width: 30%">Estudiantes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let asignatura of asignaturas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/asignatura', asignatura.id, 'view']">{{ asignatura.id }}</a>
+          </td>
+          <td>{{ asignatura.nombre }}</td>
+          <td>
+            <div *ngIf="asignatura.id_curso">
+              <a [routerLink]="['/curso', asignatura.id_curso?.id, 'view']">{{ asignatura.id_curso?.grado }} </a>
+              <a [routerLink]="['/curso', asignatura.id_curso?.id, 'view']">{{ asignatura.id_curso?.salon }} </a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/asignatura', asignatura.id, 'view']"
+                class="btn btn-outline-info"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Ver Estudiantes</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

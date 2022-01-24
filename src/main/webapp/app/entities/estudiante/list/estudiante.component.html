@@ -1,0 +1,32 @@
+<div>
+  <h2 id="page-heading" data-cy="EstudianteHeading">
+    <span>Listado de Estudiantes</span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="estudiantes?.length === 0">
+    <span>No se encuentra estudiantes registrados para esta materia.</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="estudiantes && estudiantes.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 10%"><span>ID</span></th>
+          <th scope="col" style="width: 90%"><span>Nombre</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a>{{ estudiante.id }}</a>
+          </td>
+          <td>{{ estudiante.nombre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

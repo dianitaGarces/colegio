@@ -1,0 +1,45 @@
+<div>
+  <h1>{{ colegio?.nombre }}</h1>
+
+  <h2 id="page-heading" data-cy="ProfesorHeading">
+    <span>Listado de Profesores </span>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="profesors?.length === 0">
+    <span>No existen profesores creados</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="profesors && profesors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" style="width: 10%"><span>ID</span></th>
+          <th scope="col" style="width: 70%"><span>Profesor</span></th>
+          <th scope="col" style="width: 20%"><span>Asignaturas</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let profesor of profesors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="[profesor.id, 'view']">{{ profesor.id }}</a>
+          </td>
+          <td>
+            <span>{{ profesor.nombre }}</span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="[profesor.id, 'view']" class="btn btn-outline-info" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">Ver Asignaturas</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

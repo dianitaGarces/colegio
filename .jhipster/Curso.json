@@ -1,0 +1,29 @@
+{
+  "changelogDate": "20220123124205",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "salon",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "grado",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Curso",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "colegio",
+      "relationshipName": "id_colegio",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
