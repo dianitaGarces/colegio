@@ -57,10 +57,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  ngAfterViewInit(): void {
-    this.username.nativeElement.focus();
-  }
-
   loginUser(): void {
     this.loginService
       .login({
@@ -73,7 +69,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           this.authenticationError = false;
           if (!this.router.getCurrentNavigation()) {
             // There were no routing during login (eg from navigationToStoredUrl)
-            this.router.navigate(['']);
+            this.router.navigate(['profesor']);
           }
         },
         error: () => (this.authenticationError = true),

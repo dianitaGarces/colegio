@@ -6,11 +6,11 @@
   <div class="col-md-9">
     <h1 class="display-4"><span>Colegio del Olimpo</span></h1>
 
-    <div class="col-md-9 justify-content-center" *ngIf="!account?.imageUrl">
+    <div class="col-md-9 justify-content-center" *ngIf="account === null">
       <div class="col-lg-6 col-md-8 col-sm-10">
         <h3 class="margen" data-cy="loginTitle">Autenticación</h3>
         <div class="alert alert-danger" *ngIf="authenticationError" data-cy="loginError">
-          <strong>Failed to sign in!</strong> Verifique sus datos.
+          <strong>Error en el inicio de sesión!</strong> Verifique sus datos.
         </div>
         <form class="form" role="form" (ngSubmit)="loginUser()" [formGroup]="loginForm">
           <div class="form-group">
@@ -41,6 +41,28 @@
           </div>
           <button type="submit" class="btn btn-primary" data-cy="submit">Iniciar sesión</button>
         </form>
+      </div>
+    </div>
+    <div class="col-md-9 justify-content-center" *ngIf="account !== null">
+      <div class="dashboard__routes">
+        <div class="option" routerLink="profesor">
+          <div class="option__header">
+            <div class="arrow">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="40" height="40" rx="20" fill="white" />
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M21.2097 12.3871L21.2929 12.2929C21.6534 11.9324 22.2206 11.9047 22.6129 12.2097L22.7071 12.2929L29.7071 19.2929L29.7485 19.3369L29.8037 19.4047L29.8753 19.5159L29.9288 19.6287L29.9642 19.734L29.9931 19.8819L30 20L29.9972 20.0752L29.9798 20.2007L29.9503 20.3121L29.9063 20.4232L29.854 20.5207L29.7803 20.6254L29.7071 20.7071L22.7071 27.7071C22.3166 28.0976 21.6834 28.0976 21.2929 27.7071C20.9324 27.3466 20.9047 26.7794 21.2097 26.3871L21.2929 26.2929L26.584 21H11C10.4477 21 10 20.5523 10 20C10 19.4477 10.4477 19 11 19H26.586L21.2929 13.7071C20.9324 13.3466 20.9047 12.7794 21.2097 12.3871L21.2929 12.2929L21.2097 12.3871Z"
+                  fill="#3A61C6"
+                />
+              </svg>
+            </div>
+          </div>
+          <h5 class="option__name">Ver Colegio</h5>
+          <div class="option__divider"></div>
+          <p class="option__description">Ver destalles del colegio del Olimpo</p>
+        </div>
       </div>
     </div>
   </div>
