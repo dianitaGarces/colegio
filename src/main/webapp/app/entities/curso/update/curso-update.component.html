@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-curso-heading" data-cy="CursoCreateUpdateHeading">Create or edit a Curso</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_salon">Salon</label>
+          <input type="text" class="form-control" name="salon" id="field_salon" data-cy="salon" formControlName="salon" />
+          <div *ngIf="editForm.get('salon')!.invalid && (editForm.get('salon')!.dirty || editForm.get('salon')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('salon')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_grado">Grado</label>
+          <input type="number" class="form-control" name="grado" id="field_grado" data-cy="grado" formControlName="grado" />
+          <div *ngIf="editForm.get('grado')!.invalid && (editForm.get('grado')!.dirty || editForm.get('grado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('grado')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('grado')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_id_colegio">Id Colegio</label>
+          <select class="form-control" id="field_id_colegio" data-cy="id_colegio" name="id_colegio" formControlName="id_colegio">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="colegioOption.id === editForm.get('id_colegio')!.value?.id ? editForm.get('id_colegio')!.value : colegioOption"
+              *ngFor="let colegioOption of colegiosSharedCollection; trackBy: trackColegioById"
+            >
+              {{ colegioOption.nombre }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

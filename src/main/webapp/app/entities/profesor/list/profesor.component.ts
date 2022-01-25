@@ -10,6 +10,7 @@ import { ColegioService } from '../../colegio/service/colegio.service';
 @Component({
   selector: 'jhi-profesor',
   templateUrl: './profesor.component.html',
+  styleUrls: ['./profesor.component.scss'],
 })
 export class ProfesorComponent implements OnInit {
   profesors?: IProfesor[];

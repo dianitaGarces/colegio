@@ -2,8 +2,6 @@ package com.colegio.prueba.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -23,19 +21,11 @@ public class Asignatura implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "nombre", nullable = false, unique = true)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @ManyToOne
     private Profesor id_profesor;
-
-    @ManyToMany
-    @JoinTable(
-        name = "rel_asignatura__id_estudiante",
-        joinColumns = @JoinColumn(name = "asignatura_id"),
-        inverseJoinColumns = @JoinColumn(name = "id_estudiante_id")
-    )
-    private Set<Estudiante> id_estudiantes = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "id_colegio" }, allowSetters = true)
@@ -79,29 +69,6 @@ public class Asignatura implements Serializable {
 
     public Asignatura id_profesor(Profesor profesor) {
         this.setId_profesor(profesor);
-        return this;
-    }
-
-    public Set<Estudiante> getId_estudiantes() {
-        return this.id_estudiantes;
-    }
-
-    public void setId_estudiantes(Set<Estudiante> estudiantes) {
-        this.id_estudiantes = estudiantes;
-    }
-
-    public Asignatura id_estudiantes(Set<Estudiante> estudiantes) {
-        this.setId_estudiantes(estudiantes);
-        return this;
-    }
-
-    public Asignatura addId_estudiante(Estudiante estudiante) {
-        this.id_estudiantes.add(estudiante);
-        return this;
-    }
-
-    public Asignatura removeId_estudiante(Estudiante estudiante) {
-        this.id_estudiantes.remove(estudiante);
         return this;
     }
 

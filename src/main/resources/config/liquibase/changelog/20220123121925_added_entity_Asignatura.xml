@@ -15,7 +15,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="nombre" type="varchar(255)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_asignatura__nombre" />
+                <constraints nullable="false" uniqueConstraintName="ux_asignatura__nombre" />
             </column>
             <column name="id_profesor_id" type="bigint">
                 <constraints nullable="true" />
@@ -25,20 +25,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-    </changeSet>
-
-    <changeSet id="20220123121925-1-relations" author="jhipster">
-
-        <createTable tableName="rel_asignatura__id_estudiante">
-            <column name="id_estudiante_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="asignatura_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="asignatura_id, id_estudiante_id" tableName="rel_asignatura__id_estudiante"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

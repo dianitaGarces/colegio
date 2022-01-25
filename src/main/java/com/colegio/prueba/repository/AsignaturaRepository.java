@@ -1,6 +1,7 @@
 package com.colegio.prueba.repository;
 
 import com.colegio.prueba.domain.Asignatura;
+import com.colegio.prueba.domain.Estudiante;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

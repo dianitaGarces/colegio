@@ -12,7 +12,7 @@ const asignaturaRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
-    path: ':id/view',
+    path: ':nombre/:id/view',
     component: EstudianteComponent,
     canActivate: [UserRouteAccessService],
   },

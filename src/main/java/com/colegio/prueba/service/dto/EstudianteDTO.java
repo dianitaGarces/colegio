@@ -1,7 +1,9 @@
 package com.colegio.prueba.service.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.validation.constraints.*;
 
 /**
@@ -13,6 +15,8 @@ public class EstudianteDTO implements Serializable {
 
     @NotNull
     private String nombre;
+
+    private Set<AsignaturaDTO> id_asignaturas = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -28,6 +32,14 @@ public class EstudianteDTO implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Set<AsignaturaDTO> getId_asignaturas() {
+        return id_asignaturas;
+    }
+
+    public void setId_asignaturas(Set<AsignaturaDTO> id_asignaturas) {
+        this.id_asignaturas = id_asignaturas;
     }
 
     @Override
@@ -57,6 +69,7 @@ public class EstudianteDTO implements Serializable {
         return "EstudianteDTO{" +
             "id=" + getId() +
             ", nombre='" + getNombre() + "'" +
+            ", id_asignaturas=" + getId_asignaturas() +
             "}";
     }
 }

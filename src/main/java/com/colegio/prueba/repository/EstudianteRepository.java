@@ -13,6 +13,6 @@ import org.springframework.stereotype.Repository;
 @SuppressWarnings("unused")
 @Repository
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long>, JpaSpecificationExecutor<Estudiante> {
-    @Query("select estudiante from Estudiante estudiante  where id =:id")
-    List<Estudiante> findAllId(@Param("id") Long id);
+    @Query("select estudiante from Estudiante estudiante  left join fetch estudiante.id_asignaturas ")
+    List<Estudiante> findAllId();
 }

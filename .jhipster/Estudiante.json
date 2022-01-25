@@ -12,6 +12,15 @@
   "name": "Estudiante",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityField": "nombre",
+      "otherEntityName": "asignatura",
+      "otherEntityRelationshipName": "id_estudiante",
+      "ownerSide": true,
+      "relationshipName": "id_asignatura",
+      "relationshipType": "many-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

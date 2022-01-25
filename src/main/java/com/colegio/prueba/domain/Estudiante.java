@@ -1,6 +1,9 @@
 package com.colegio.prueba.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -22,6 +25,15 @@ public class Estudiante implements Serializable {
     @NotNull
     @Column(name = "nombre", nullable = false)
     private String nombre;
+
+    @ManyToMany
+    @JoinTable(
+        name = "rel_estudiante__id_asignatura",
+        joinColumns = @JoinColumn(name = "estudiante_id"),
+        inverseJoinColumns = @JoinColumn(name = "id_asignatura_id")
+    )
+    @JsonIgnoreProperties(value = { "id_profesor", "id_curso" }, allowSetters = true)
+    private Set<Asignatura> id_asignaturas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -49,6 +61,29 @@ public class Estudiante implements Serializable {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public Set<Asignatura> getId_asignaturas() {
+        return this.id_asignaturas;
+    }
+
+    public void setId_asignaturas(Set<Asignatura> asignaturas) {
+        this.id_asignaturas = asignaturas;
+    }
+
+    public Estudiante id_asignaturas(Set<Asignatura> asignaturas) {
+        this.setId_asignaturas(asignaturas);
+        return this;
+    }
+
+    public Estudiante addId_asignatura(Asignatura asignatura) {
+        this.id_asignaturas.add(asignatura);
+        return this;
+    }
+
+    public Estudiante removeId_asignatura(Asignatura asignatura) {
+        this.id_asignaturas.remove(asignatura);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

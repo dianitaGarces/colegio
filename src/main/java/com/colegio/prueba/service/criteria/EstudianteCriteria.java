@@ -28,6 +28,8 @@ public class EstudianteCriteria implements Serializable, Criteria {
 
     private StringFilter nombre;
 
+    private LongFilter id_asignaturaId;
+
     private Boolean distinct;
 
     public EstudianteCriteria() {}
@@ -35,6 +37,7 @@ public class EstudianteCriteria implements Serializable, Criteria {
     public EstudianteCriteria(EstudianteCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.nombre = other.nombre == null ? null : other.nombre.copy();
+        this.id_asignaturaId = other.id_asignaturaId == null ? null : other.id_asignaturaId.copy();
         this.distinct = other.distinct;
     }
 
@@ -73,6 +76,21 @@ public class EstudianteCriteria implements Serializable, Criteria {
         this.nombre = nombre;
     }
 
+    public LongFilter getId_asignaturaId() {
+        return id_asignaturaId;
+    }
+
+    public LongFilter id_asignaturaId() {
+        if (id_asignaturaId == null) {
+            id_asignaturaId = new LongFilter();
+        }
+        return id_asignaturaId;
+    }
+
+    public void setId_asignaturaId(LongFilter id_asignaturaId) {
+        this.id_asignaturaId = id_asignaturaId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -90,12 +108,17 @@ public class EstudianteCriteria implements Serializable, Criteria {
             return false;
         }
         final EstudianteCriteria that = (EstudianteCriteria) o;
-        return Objects.equals(id, that.id) && Objects.equals(nombre, that.nombre) && Objects.equals(distinct, that.distinct);
+        return (
+            Objects.equals(id, that.id) &&
+            Objects.equals(nombre, that.nombre) &&
+            Objects.equals(id_asignaturaId, that.id_asignaturaId) &&
+            Objects.equals(distinct, that.distinct)
+        );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, distinct);
+        return Objects.hash(id, nombre, id_asignaturaId, distinct);
     }
 
     // prettier-ignore
@@ -104,6 +127,7 @@ public class EstudianteCriteria implements Serializable, Criteria {
         return "EstudianteCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
             (nombre != null ? "nombre=" + nombre + ", " : "") +
+            (id_asignaturaId != null ? "id_asignaturaId=" + id_asignaturaId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

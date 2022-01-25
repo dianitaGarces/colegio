@@ -5,8 +5,16 @@ Main page styles
 .hipster {
   display: inline-block;
   width: 1080px;
-  height: 1080px;
+  height: 600px;
   background: url('../../content/images/fondo_home.png') no-repeat center top;
+  background-size: contain;
+}
+
+.fondoTitulo {
+  display: inline-block;
+  width: 768px;
+  height: 768px;
+  background: url('../../content/images/fondo_titulo.png') no-repeat center top;
   background-size: contain;
 }
 

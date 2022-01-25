@@ -9,16 +9,19 @@ import { AsignaturaService } from '../service/asignatura.service';
 @Component({
   selector: 'jhi-asignatura',
   templateUrl: './asignatura.component.html',
+  styleUrls: ['./asignatura.component.scss'],
 })
 export class AsignaturaComponent implements OnInit {
   asignaturas?: IAsignatura[];
   isLoading = false;
+  nombreProfesor?: any;
 
   constructor(protected asignaturaService: AsignaturaService, protected modalService: NgbModal, private activatedRoute: ActivatedRoute) {}
 
   loadAll(): void {
     const routeParams = this.activatedRoute.snapshot.paramMap;
     const idProfesor = Number(routeParams.get('id'));
+    this.nombreProfesor = routeParams.get('nombre')?.toString();
 
     this.isLoading = true;
 

@@ -93,6 +93,15 @@ public class EstudianteQueryService extends QueryService<Estudiante> {
             if (criteria.getNombre() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getNombre(), Estudiante_.nombre));
             }
+            if (criteria.getId_asignaturaId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(
+                            criteria.getId_asignaturaId(),
+                            root -> root.join(Estudiante_.id_asignaturas, JoinType.LEFT).get(Asignatura_.id)
+                        )
+                    );
+            }
         }
         return specification;
     }
